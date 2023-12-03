@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "github.com/siriusfreak/grpc-quic-example/pkg/gen/proto;proto";
+
+service FileService {
+  // Unary call
+  rpc GetSimpleResponse(SimpleRequest) returns (SimpleResponse) {}
+
+  // Server streaming call
+  rpc StreamFile(FileRequest) returns (stream FileChunk) {}
+}
+
+message SimpleRequest {
+  string query = 1;
+}
+
+message SimpleResponse {
+  string message = 1;
+}
+
+message FileRequest {
+  string fileName = 1;
+}
+
+message FileChunk {
+  bytes content = 1;
+}
